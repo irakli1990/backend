@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { authController } from "../../../controllers/auth.controller";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
-  res.json({ status: true, message: "login" });
-});
+router.post("/login", authController.login);
+
+router.post("/register", authController.register);
 
 export const authRoutes = router;

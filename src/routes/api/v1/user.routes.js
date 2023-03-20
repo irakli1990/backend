@@ -5,6 +5,4 @@ const router = Router();
 
 router.get("/", usersController.get_users);
 
-router.post("/", usersController.save_user);
-
 export const userRoutes = router;

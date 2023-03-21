@@ -20,7 +20,7 @@ const router = Router();
 router.post("/login", authController.login);
 
 /**
- * @typedef User
+ * @typedef Register
  * @property {string} email.required - Some description for product
  * @property {string} password.required - Some description for product
  */
@@ -28,8 +28,8 @@ router.post("/login", authController.login);
  * This function comment is parsed by doctrine
  * @route POST /auth/register
  * @group Auth - login register user
- * @param {User.model} user.body.required - the register body
- * @returns {object} 201 - An array of user info
+ * @param {Register.model} register.body.required - the register body
+ * @returns {object} 201 - An user
  * @returns {Error}  default - Unexpected error
  */
 router.post("/register", authController.register);

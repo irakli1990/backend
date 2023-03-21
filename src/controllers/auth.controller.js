@@ -8,6 +8,7 @@ const login = async (req, res, next) => {
     const user = await User.findAndGenerateToken(req.body);
     const token = jwt.sign(
       {
+        exp: 3600,
         sub: user.id,
         role: user.role,
       },
@@ -26,7 +27,12 @@ const register = async (req, res, next) => {
     const user = await User.create({ ...req.body });
     res.status(status.CREATED).json({ data: user });
   } catch (error) {
-    next(User.checkDuplicateEmailError(error));
+    const validationError = User.checkDuplicateEmailError(error);
+    next(
+      res
+        .status(validationError.status)
+        .json({ message: validationError.message })
+    );
   }
 };
 
